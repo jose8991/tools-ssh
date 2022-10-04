@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [[ $# -eq 0 ]] ; then
+  NAME="dev"
+else
+  NAME="$1"
+fi
+if test -f "$NAME.env"; then
+  echo "Setting $NAME EnvVars."
+  export $(grep -v '^#' $NAME.env | xargs)
+else
+  echo "$NAME.env Does not exist."
+fi
